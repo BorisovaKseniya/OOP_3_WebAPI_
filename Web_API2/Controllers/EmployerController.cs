@@ -17,23 +17,24 @@ namespace Web_API2.Controllers
         [HttpGet("GetAll")]
         public ActionResult<List<Employer>> Get()
         {
-            return Ok(_employerService.GetAllEmployers);
+            var employer = _employerService.GetAllEmployers();
+            return Ok(employer);
         }
 
         [HttpGet("{id}")]
         public ActionResult<List<Employer>> GetSingle(int id)
         {
             var employer = _employerService.GetEmployerById(id);
-            //if (employer != null)
-            return Ok(employer);
-            //else
-            //    throw new Exception("Employer not found");
+            if (employer != null)
+                return Ok(employer);
+            else
+                throw new Exception("Employer not found");
         }
         [HttpPost]
         public ActionResult<List<Employer>> AddEmployer(Employer newEmployer)
         {
-
-            return Ok(_employerService.AddEmployers);
+            var employer = _employerService.AddEmployers(newEmployer);
+            return Ok(employer);
         }
     }
 }
