@@ -15,26 +15,24 @@ namespace Web_API2.Controllers
         }
 
         [HttpGet("GetAll")]
-        public ActionResult<List<Employer>> Get()
+        public async Task<ActionResult<ServiceResponse<List<Employer>>>> Get()
         {
             var employer = _employerService.GetAllEmployers();
-            return Ok(employer);
+            return Ok(await employer);
         }
 
         [HttpGet("{id}")]
-        public ActionResult<List<Employer>> GetSingle(int id)
+        public async Task<ActionResult<ServiceResponse<Employer>>> GetSingle(int id)
         {
             var employer = _employerService.GetEmployerById(id);
-            if (employer != null)
-                return Ok(employer);
-            else
-                throw new Exception("Employer not found");
+            return Ok(await employer);
+
         }
         [HttpPost]
-        public ActionResult<List<Employer>> AddEmployer(Employer newEmployer)
+        public async Task<ActionResult<ServiceResponse<List<Employer>>>> AddEmployer(Employer newEmployer)
         {
             var employer = _employerService.AddEmployers(newEmployer);
-            return Ok(employer);
+            return Ok(await employer);
         }
     }
 }

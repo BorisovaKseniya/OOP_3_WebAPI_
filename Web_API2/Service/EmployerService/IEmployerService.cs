@@ -2,8 +2,8 @@
 {
     public interface IEmployerService
     {
-        List<Employer> GetAllEmployers();
-        Employer GetEmployerById(int id);
-        List<Employer> AddEmployers(Employer newEmployer);
+        Task<ServiceResponse<List<Employer>>> GetAllEmployers();
+        Task<ServiceResponse<Employer>> GetEmployerById(int id);
+        Task<ServiceResponse<List<Employer>>> AddEmployers(Employer newEmployer);
     }
 }

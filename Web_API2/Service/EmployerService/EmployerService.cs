@@ -9,20 +9,27 @@
         };
 
 
-        public List<Employer> AddEmployers(Employer newEmployer)
+        public async Task<ServiceResponse<List<Employer>>> AddEmployers(Employer newEmployer)
         {
+            var serviceResponse = new ServiceResponse<List<Employer>>();
             employers.Add(newEmployer);
-            return employers;
+            serviceResponse.Data = employers;
+            return serviceResponse;
         }
 
-        public List<Employer> GetAllEmployers()
+        public async Task<ServiceResponse<List<Employer>>> GetAllEmployers()
         {
-            return employers;
+            var serviceResponse = new ServiceResponse<List<Employer>>();
+            serviceResponse.Data = employers;
+            return serviceResponse;
         }
 
-        public Employer GetEmployerById(int id)
+        public async Task<ServiceResponse<Employer>> GetEmployerById(int id)
         {
-            return employers.FirstOrDefault(c => c.Id == id);
+            var serviceResponse = new ServiceResponse<Employer>();
+            var employer = employers.FirstOrDefault(c => c.Id == id);
+            serviceResponse.Data = employer;
+            return serviceResponse;
         }
     }
 }
